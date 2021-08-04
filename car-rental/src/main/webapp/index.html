@@ -1,24 +1,140 @@
 <!DOCTYPE html>
+<!-- i hate u [Option + shift + f] -->
 <html>
-    <head>
-        <!-- metadata -->
-        <title>Hello Ajax</title>
-    </head>
-    <body>
-        <h1>Hello Ajax!!!</h1>
 
-        <form id="add-trainee-form"> <!--method="post" action="/hello-servlets/api/trainee"> -->
-            <!-- x-www-url-form-encoded -->
-            <div><label for="trainee-name">Name</label><input type="text" id="trainee-name" name="trainee-name" /></div>
-            <div><label for="trainee-major">Major</label><input type="text" id="trainee-major" name="trainee-major" /></div>
-            <div><input type="submit" id="add-trainee" value="Add Trainee" /></div>
-        </form>
+<head>
+    <!-- metadata -->
+    <title>car rental Entry</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
-        <table id="trainee-data">
-            <tr><th>ID</th><th>Name</th><th>Major</th></tr>
+
+
+    <style>
+        button {
+            background-color: blue;
+        }
+
+        .green-button {
+            background-color: green;
+        }
+
+        .red-button {
+            background-color: red;
+            font-size: 10px;
+            padding: 10px 18px;
+            text-align: center;
+        }
+
+        .green-button:hover {
+            background-color: purple;
+        }
+
+        #id {
+            background-color: black;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Car rental Entry</h1>
+
+    <div class="col-10">
+        <table id="orders-data" class="table">
+            <tr>
+                <th>reference_id</th>
+                <th>customer_id</th>
+                <th>make</th>
+                <th>model</th>
+                <th>url</th>
+                <th>total_cost</th>
+            </tr>
             <!-- dynamic data with JS -->
-            
         </table>
-    </body>
- 
+    </div>
+
+
+    <script type="text/javascript">
+
+        window.onload = function () {
+            // 1. make an xhr object (ready state is 0)
+            let xhr = new XMLHttpRequest();
+            // 2. define what happens during the Ajax call
+            // handler / callback function
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    //console.log(xhr.responseText)
+                    var orderArray = JSON.parse(xhr.responseText)
+                    console.log(orderArray)
+                    // dom manipulation codes
+                    orderArray.forEach(order => {
+                        addOrderRecordToTable(order)
+                    });
+                }
+            }
+            // 3. open the xhr call (HTTP verb, and the URL)
+            // url with beginning / 'context root'
+            xhr.open('GET', '/car-rental/api/rental');
+            // 4. send the ajax call to the server
+            xhr.send();
+        }
+
+
+        function addOrderRecordToTable(order) {
+            console.log('addOrderRecordToTable: adding order to table')
+            console.log('Orders: ' + order)
+            var tr = document.createElement('tr');
+            var reference_id = document.createElement('td');
+            var customer_id = document.createElement('td');
+            var make = document.createElement('td');
+            var model = document.createElement('td');
+            var url = document.createElement('td');
+            var total_cost = document.createElement('td');
+            var btn = document.createElement('button');
+            btn.setAttribute('class', 'red-button');
+            btn.textContent = 'delete';
+            var para = order.reference_id;
+            btn.addEventListener("click", function() {
+            	url = "http://localhost:8080/car-rental/api/rental" + "?id=" + para;
+            	let xhr = new XMLHttpRequest();
+            	xhr.open('DELETE', url);
+            	
+
+            	xhr.onreadystatechange = function () {
+            		   if (xhr.readyState === 4) {
+            		      console.log(xhr.status);
+            		      console.log(xhr.responseText);
+            	}};
+            		   
+            	xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+            	xhr.send();
+            	location.reload(true);
+            });
+
+            reference_id.innerText = order.reference_id; // properties of the JSON object
+            customer_id.innerText = order.customer_id; // store in HTML tag value
+            make.innerText = order.make;
+            model.innerText = order.model;
+            url.innerText = order.url;
+            total_cost.innerText = order.total_cost;
+            tr.appendChild(reference_id);
+            tr.appendChild(customer_id);
+            tr.appendChild(make);
+            tr.appendChild(model);
+            tr.appendChild(url);
+            tr.appendChild(total_cost);
+            tr.appendChild(btn);
+            document.getElementById('orders-data').appendChild(tr)
+        }
+
+
+    </script>
+</body>
+
 </html>

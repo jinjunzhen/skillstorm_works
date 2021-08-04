@@ -1,0 +1,15 @@
+button {
+	background-color: blue;
+}
+
+.green-button {
+	background-color: green;
+}
+
+.green-button:hover {
+	background-color: purple;
+}
+
+#id {
+	background-color: black;
+}
