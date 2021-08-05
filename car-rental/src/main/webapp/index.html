@@ -3,64 +3,185 @@
 <html>
 
 <head>
-    <!-- metadata -->
-    <title>car rental Entry</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+<!-- metadata -->
+<title>car rental Entry</title>
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+	crossorigin="anonymous">
 
 
 
-    <style>
-        button {
-            background-color: blue;
-        }
 
-        .green-button {
-            background-color: green;
-        }
 
-        .red-button {
-            background-color: red;
-            font-size: 10px;
-            padding: 10px 18px;
-            text-align: center;
-        }
+<style>
+Ï button {
+	background-color: blue;
+}
 
-        .green-button:hover {
-            background-color: purple;
-        }
+.green-button {
+	background-color: green;
+}
 
-        #id {
-            background-color: black;
-        }
-    </style>
+.red-button {
+	background-color: red;
+	font-size: 10px;
+	padding: 10px 18px;
+	text-align: center;
+}
+
+.green-button:hover {
+	background-color: purple;
+}
+
+#id {
+	background-color: black;
+}
+
+.input-box-green {
+	width: 60%;
+	heigth: 100px;
+	border: 5px solid green;
+	padding: 20px;
+	margin: 20px;
+}
+
+.input-box-yellow {
+	width: 60%;
+	heigth: 100px;
+	border: 5px solid yellow;
+	padding: 20px;
+	margin: 20px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+	-moz-appearance: textfield;
+}
+
+.btn-right-green {
+	float: right;
+	transition-duration: 0.4s;
+}
+
+.btn-right-green:hover {
+	background-color: #4CAF50;
+	/* Green */
+	color: white;
+}
+
+.btn-right-yellow {
+	float: right;
+	transition-duration: 0.4s;
+}
+
+.btn-right-yellow:hover {
+	background-color: #F5FDB0;
+	/* Green */
+	color: white;
+}
+
+.btn-delete {
+	transition-duration: 0.4s;
+}
+
+.btn-delete:hover {
+	background-color: #f44336;
+	color: white;
+}
+
+input {
+	margin-bottom: 20px;
+}
+</style>
 
 </head>
 
 <body>
 
-    <h1>Car rental Entry</h1>
-
-    <div class="col-10">
-        <table id="orders-data" class="table">
-            <tr>
-                <th>reference_id</th>
-                <th>customer_id</th>
-                <th>make</th>
-                <th>model</th>
-                <th>url</th>
-                <th>total_cost</th>
-            </tr>
-            <!-- dynamic data with JS -->
-        </table>
-    </div>
+	<h1>Car rental Entry</h1>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+		crossorigin="anonymous"></script>
 
 
-    <script type="text/javascript">
+	<div class="col-8 input-box-green" id="create_form">
+		<button onclick="clickCreate()">Create record</button>
+		<form id="createForm">
+			<br> <br>
+			<div>
+				<input type="number" id="ccustomer_id" name="customer_id"
+					placeholder="customer_id"> <input type="text" id="cmake"
+					name="make" placeholder="make"> <input type="text"
+					id="cmodel" name="model" placeholder="model">
+			</div>
+			<div>
+				<input type="text" id="curl" name="url" placeholder="url (optional)">
+				<input type="number" id="ctotal_cost" name="total_cost"
+					placeholder="total_cost"> <input class="btn-right-green"
+					type="submit" value="create entry">
+
+			</div>
+
+		</form>
+	</div>
+
+	<br>
+	<br>
+
+	<div class="col-8 input-box-yellow" id="update_form">
+		<button onclick="clickUpdate()">Update record</button>
+		<form id="updateForm">
+			<br> <br>
+			<div>
+				<input type="number" id="ureference_id" name="reference_id"
+					placeholder="reference_id"> <input type="number"
+					id="ucustomer_id" name="customer_id" placeholder="customer_id">
+				<input type="text" id="umake" name="make" placeholder="make">
+			</div>
+			<div>
+				<input type="text" id="umodel" name="model" placeholder="model">
+				<input type="text" id="uurl" name="url" placeholder="url (optional)">
+				<input type="number" id="utotal_cost" name="total_cost"
+					placeholder="total_cost">
+			</div>
+			<input class="btn-right-yellow" type="submit" value="update entry">
+			<br>
+		</form>
+	</div>
+
+	<br>
+	<br>
+	<br>
+	<br>
+
+
+
+	<div class="col-8">
+		<table id="orders-data" class="table">
+			<tr>
+				<th>reference_id</th>
+				<th>customer_id</th>
+				<th>make</th>
+				<th>model</th>
+				<th>url</th>
+				<th>total_cost</th>
+			</tr>
+			<!-- dynamic data with JS -->
+		</table>
+	</div>
+
+
+	<script type="text/javascript">
 
         window.onload = function () {
             // 1. make an xhr object (ready state is 0)
@@ -83,12 +204,90 @@
             xhr.open('GET', '/car-rental/api/rental');
             // 4. send the ajax call to the server
             xhr.send();
+            
+            var x = document.getElementById("createForm");
+            var y = document.getElementById("updateForm");
+            y.style.display = "none";
+            x.style.display = "none";
+            
         }
+        
+        // Create new entry
+        document.getElementById('createForm').addEventListener('submit', function(event){
+            event.preventDefault(); // prevent the default form operation from happening
+            // callback function : what happens when the event "fires"
+            var customer_id = document.getElementById('ccustomer_id').value;
+            var make = document.getElementById('cmake').value;
+            var model = document.getElementById('cmodel').value;
+            var url = document.getElementById('curl').value;
+            var total_cost = document.getElementById('ctotal_cost').value;
+            // ES6+ object literal syntax to create JSON object on the fly
+            var order = {
+            		customer_id: customer_id,
+            		make: make,
+            		model: model,
+            		url: url,
+            		total_cost: total_cost
+            }; 
+            console.log(order);
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4 && xhr.status === 201){
+                    console.log('Success') // log framework
+                    var updatedOrder = JSON.parse(xhr.responseText);
+                    addOrderRecordToTable(updatedOrder);
+                    document.getElementById('createForm').reset();
+                }
+            }
+            url = "http://localhost:8080/car-rental/api/rental";
+            xhr.open('POST', url);
+            xhr.send(JSON.stringify(order));
+            location.reload(true);
+        });
+        
+        
+        //edit existing entry
+        document.getElementById('updateForm').addEventListener('submit', function(event){
+            event.preventDefault(); // prevent the default form operation from happening
+            // callback function : what happens when the event "fires"
+            var reference_id = document.getElementById('ureference_id').value;
+            var customer_id = document.getElementById('ucustomer_id').value;
+            var make = document.getElementById('umake').value;
+            var model = document.getElementById('umodel').value;
+            var url = document.getElementById('uurl').value;
+            var total_cost = document.getElementById('utotal_cost').value;
+            // ES6+ object literal syntax to create JSON object on the fly
+            var order = {
+            		reference_id: reference_id,
+            		customer_id: customer_id,
+            		make: make,
+            		model: model,
+            		url: url,
+            		total_cost: total_cost
+            }; 
+            console.log(order);
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4 && xhr.status === 201){
+                    console.log('Success') // log framework
+                    var updatedOrder = JSON.parse(xhr.responseText);
+                    addOrderRecordToTable(updatedOrder);
+                    document.getElementById('updateForm').reset();
+                }
+            }
+            url = "http://localhost:8080/car-rental/api/rental";
+            xhr.open('PUT', url);
+            xhr.send(JSON.stringify(order));
+            location.reload(true);
+        });
+        
+        
 
 
+		// fetch all data into table when page init
         function addOrderRecordToTable(order) {
-            console.log('addOrderRecordToTable: adding order to table')
-            console.log('Orders: ' + order)
+            //console.log('addOrderRecordToTable: adding order to table')
+            //console.log('Orders: ' + order)
             var tr = document.createElement('tr');
             var reference_id = document.createElement('td');
             var customer_id = document.createElement('td');
@@ -97,24 +296,24 @@
             var url = document.createElement('td');
             var total_cost = document.createElement('td');
             var btn = document.createElement('button');
-            btn.setAttribute('class', 'red-button');
+            btn.setAttribute('class', 'btn-delete');
             btn.textContent = 'delete';
             var para = order.reference_id;
-            btn.addEventListener("click", function() {
-            	url = "http://localhost:8080/car-rental/api/rental" + "?id=" + para;
-            	let xhr = new XMLHttpRequest();
-            	xhr.open('DELETE', url);
-            	
+            btn.addEventListener("click", function () {
+                url = "http://localhost:8080/car-rental/api/rental" + "?id=" + para;
+                let xhr = new XMLHttpRequest();
+                xhr.open('DELETE', url);
 
-            	xhr.onreadystatechange = function () {
-            		   if (xhr.readyState === 4) {
-            		      console.log(xhr.status);
-            		      console.log(xhr.responseText);
-            	}};
-            		   
-            	xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
-            	xhr.send();
-            	location.reload(true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        console.log(xhr.status);
+                        console.log(xhr.responseText);
+                    }
+                };
+
+                xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+                xhr.send();
+                location.reload(true);
             });
 
             reference_id.innerText = order.reference_id; // properties of the JSON object
@@ -132,6 +331,20 @@
             tr.appendChild(btn);
             document.getElementById('orders-data').appendChild(tr)
         }
+        
+        function clickCreate() {
+        	  var x = document.getElementById("createForm");
+        	  var y = document.getElementById("updateForm");
+        	  y.style.display = "none";
+        	  x.style.display = "block";
+        }
+        
+        function clickUpdate() {
+      	  var x = document.getElementById("updateForm");
+      	  var y = document.getElementById("createForm");
+      	  y.style.display = "none";
+      	  x.style.display = "block";
+      	}
 
 
     </script>
